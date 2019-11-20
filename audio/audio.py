@@ -1,9 +1,10 @@
 """TO-DO: This XBlock will play an MP3 file as an HTML5 audio element. """
 
-import pkg_resources
+from __future__ import absolute_import
 
+import pkg_resources
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer, String
+from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
 
 
