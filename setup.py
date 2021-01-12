@@ -1,6 +1,5 @@
 """Setup for audio XBlock."""
 
-from __future__ import absolute_import
 
 import os
 
