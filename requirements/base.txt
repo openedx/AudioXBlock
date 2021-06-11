@@ -18,7 +18,7 @@ pytz==2020.5
     # via
     #   fs
     #   xblock
-pyyaml==5.3.1
+pyyaml==5.4
     # via xblock
 six==1.15.0
     # via
