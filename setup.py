@@ -85,7 +85,7 @@ def is_requirement(line):
 
 setup(
     name='audio-xblock',
-    version='0.1',
+    version='0.2.0',
     description='audio XBlock',   # TODO: write a better description.
     packages=[
         'audio',
