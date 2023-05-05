@@ -17,7 +17,7 @@ jobs:
       branch: ${{ github.event.inputs.branch || 'master' }}
       # optional parameters below; fill in if you'd like github or email notifications
       # user_reviewers: ""
-      eam_reviewers: "arbi-bom"
+      team_reviewers: "arbi-bom"
       email_address: "arbi-bom@edx.org"
       send_success_notification: false
     secrets:
