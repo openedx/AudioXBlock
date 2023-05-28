@@ -105,5 +105,5 @@ setup(
             'audio = audio:AudioXBlock',
         ]
     },
-    package_data=package_data("audio", ["static", "templates"]),
+    package_data=package_data("audio", ["static", "templates", "translations"]),
 )
