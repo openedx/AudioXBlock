@@ -7,13 +7,20 @@ import re
 from setuptools import setup
 
 
-def package_data(pkg, root):
-    """Generic function to find package_data for `pkg` under `root`."""
-    data = []
-    for dirname, _, files in os.walk(os.path.join(pkg, root)):
-        for fname in files:
-            data.append(os.path.relpath(os.path.join(dirname, fname), pkg))
+README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
+
+def package_data(pkg, roots):
+    """
+    Generic function to find package_data.
+
+    All files under each of the `roots` will be declared as package data for package `pkg`.
+    """
+    data = []
+    for root in roots:
+        for dirname, _, files in os.walk(os.path.join(pkg, root)):
+            for fname in files:
+                data.append(os.path.relpath(os.path.join(dirname, fname), pkg))
     return {pkg: data}
 
 
@@ -86,7 +93,9 @@ def is_requirement(line):
 setup(
     name='audio-xblock',
     version='0.2.0',
-    description='audio XBlock',   # TODO: write a better description.
+    description='Audio XBlock, to play audio files in the course',
+    long_description=README,
+    long_description_content_type='text/markdown',
     packages=[
         'audio',
     ],
@@ -96,5 +105,5 @@ setup(
             'audio = audio:AudioXBlock',
         ]
     },
-    package_data=package_data("audio", "static"),
+    package_data=package_data("audio", ["static", "templates"]),
 )
