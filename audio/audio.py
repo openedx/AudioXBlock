@@ -5,6 +5,16 @@ import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
+from xblockutils.resources import ResourceLoader
+
+resource_loader = ResourceLoader(__name__)
+
+
+def _(text):
+    """
+    Make `_` a no-op, so we can scrape strings
+    """
+    return text
 
 
 class AudioXBlock(XBlock):
@@ -15,11 +25,12 @@ class AudioXBlock(XBlock):
     # Fields are defined on the class.  You can access them in your code as
     # self.<fieldname>.
     src = String(
-           scope = Scope.settings, 
-           help = "URL for MP3 file to play"
+           scope=Scope.settings,
+           help=_("URL for MP3 file to play"),
         )
 
-    def resource_string(self, path):
+    @staticmethod
+    def resource_string(path):
         """Handy helper for getting resources from our kit."""
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
@@ -30,8 +41,14 @@ class AudioXBlock(XBlock):
         The primary view of the AudioXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/audio.html")
-        frag = Fragment(html.format(src = self.src))
+        frag = Fragment()
+        frag.add_content(resource_loader.render_django_template(
+            'templates/html/audio.html',
+            context={
+                'src': self.src,
+            },
+            i18n_service=self.runtime.service(self, 'i18n'),
+        ))
         frag.add_css(self.resource_string("static/css/audio.css"))
         return frag
 
@@ -39,9 +56,14 @@ class AudioXBlock(XBlock):
         """
         The view for editing the AudioXBlock parameters inside Studio.
         """
-        html = self.resource_string("static/html/audio_edit.html")
-        frag = Fragment(html.format(src=self.src))
-
+        frag = Fragment()
+        frag.add_content(resource_loader.render_django_template(
+            'templates/html/audio_edit.html',
+            context={
+                'src': self.src,
+            },
+            i18n_service=self.runtime.service(self, 'i18n'),
+        ))
         js = self.resource_string("static/js/src/audio_edit.js")
         frag.add_javascript(js)
         frag.initialize_js('AudioEditBlock')

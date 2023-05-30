@@ -29,6 +29,7 @@ nosetests.xml
 
 # Translations
 *.mo
+audio/conf/locale/*/LC_MESSAGES/*
 
 # Mr Developer
 .mr.developer.cfg
