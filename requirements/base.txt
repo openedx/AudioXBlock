@@ -16,7 +16,7 @@ botocore==1.31.53
     #   s3transfer
 django==3.2.21
     # via
-    #   -c requirements/common_constraints.txt
+    #   -c common_constraints.txt
     #   openedx-django-pyfs
 fs==2.4.16
     # via
@@ -62,9 +62,7 @@ six==1.16.0
     #   python-dateutil
 sqlparse==0.4.4
     # via django
-typing-extensions==4.8.0
-    # via asgiref
-urllib3==1.26.16
+urllib3==1.26.17
     # via botocore
 web-fragments==2.1.0
     # via
@@ -74,10 +72,10 @@ webob==1.8.7
     # via xblock
 xblock[django]==1.7.0
     # via
-    #   -r requirements/base.in
+    #   -r base.in
     #   xblock-utils
 xblock-utils==3.4.1
-    # via -r requirements/base.in
+    # via -r base.in
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
