@@ -1,7 +1,6 @@
 """TO-DO: This XBlock will play an MP3 file as an HTML5 audio element. """
 
 
-import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Integer, Scope, String
 from xblock.fragment import Fragment
@@ -35,8 +34,7 @@ class AudioXBlock(XBlock):
     @staticmethod
     def resource_string(path):
         """Handy helper for getting resources from our kit."""
-        data = pkg_resources.resource_string(__name__, path)
-        return data.decode("utf8")
+        return resource_loader.load_unicode(path)
 
     # TO-DO: change this view to display your data your own way.
     def student_view(self, context=None):
