@@ -120,7 +120,7 @@ def is_requirement(line):
 
 setup(
     name='audio-xblock',
-    version='0.3.1',
+    version='0.3.2',
     description='Audio XBlock, to play audio files in the course',
     long_description=README,
     long_description_content_type='text/markdown',
