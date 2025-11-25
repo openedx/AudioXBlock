@@ -5,6 +5,7 @@ function AudioEditBlock(runtime, element) {
       src: $(element).find('input[name=audio_src]').val()
     };
     $.post(handlerUrl, JSON.stringify(data)).done(function(response) {
+      runtime.notify('save', {state: 'end'})
       window.location.reload(false);
     });
   });
